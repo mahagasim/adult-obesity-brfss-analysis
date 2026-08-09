@@ -1,0 +1,49 @@
+---
+title: "Factors Influencing Adult Obesity in the United States"
+author: "Maha Gasim, Amal Ahmed, Arnela Halili"
+date: "2024 course project — portfolio refactor"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+source("../R/00_packages.R")
+source("../R/01_prepare_data.R")
+source("../R/02_descriptive_analysis.R")
+source("../R/03_models.R")
+```
+
+# Research question
+
+Which demographic, socioeconomic, behavioral, and health characteristics are associated with adult obesity in the United States, and how much does baseline obesity risk vary across states?
+
+# Data
+
+The analysis uses the 2022 BRFSS reduced to the variables documented in `stata/01_extract_brfss.do`. Raw data are not versioned in the repository; see `data/README.md`.
+
+```{r load-data}
+data <- load_analysis_data()
+dim(data)
+```
+
+# Exploratory analysis
+
+```{r descriptives}
+descriptives <- run_descriptives(data, "../results")
+head(descriptives$obesity_by_state, 10)
+descriptives$conditional_sex
+```
+
+# Regression models
+
+```{r models}
+models <- fit_obesity_models(data, "../results")
+summary(models$age_logit)
+summary(models$multivariable_logit)
+models$ordinal_comparison
+summary(models$state_glmm)
+```
+
+# Interpretation and scope
+
+The original course project compared binary, multinomial, ordinal, and mixed-effects logistic specifications. The portfolio refactor preserves that modelling scope and makes the data transformations and model formulas explicit. The original analysis did not implement survey-weighted estimation, so the results here should be read as a reproduction of the course workflow rather than population-representative BRFSS estimates.
