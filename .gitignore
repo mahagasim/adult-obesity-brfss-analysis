@@ -1,0 +1,23 @@
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj
+.DS_Store
+Thumbs.db
+
+# Large/raw data are kept outside version control
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Generated outputs
+results/*
+!results/README.md
+*.html
+*.log
+
+# R package/cache artifacts
+renv/library/
+renv/staging/
