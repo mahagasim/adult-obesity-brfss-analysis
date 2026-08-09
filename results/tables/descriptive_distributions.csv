@@ -1,0 +1,48 @@
+variable,category,count,percent
+age5cat,Age 55 to 69,13145,33.236
+age5cat,Age 40 to 54,10024,25.344
+age5cat,Age 70 and older,8099,20.477
+age5cat,Age 30 to 39,5549,14.03
+age5cat,Age 18 to 29,2734,6.913
+sex,Female,21072,53.278
+sex,Male,18479,46.722
+marital,Married,16238,41.056
+marital,Divorced,8368,21.157
+marital,Never married,7152,18.083
+marital,Widowed,4142,10.473
+marital,Member of an unmarried couple,2252,5.694
+marital,Separated,1399,3.537
+edu,College or more,25386,64.185
+edu,High school or equivalent,13472,34.062
+edu,Elementary or less,693,1.752
+employstatus,Employed for wages,13734,34.725
+employstatus,Retired,10888,27.529
+employstatus,Unable to work,7515,19.001
+employstatus,Self-employed,2855,7.219
+employstatus,Out of work for 1 year or more,1542,3.899
+employstatus,A homemaker,1330,3.363
+employstatus,Out of work for less than 1 year,1236,3.125
+employstatus,A student,451,1.14
+income_group,Middle Income,17526,44.312
+income_group,Low Income,11349,28.695
+income_group,High Income,10676,26.993
+hrtdisease,No,34995,88.481
+hrtdisease,Yes,4556,11.519
+totinda,Had physical activity or exercise,25270,63.892
+totinda,No physical activity or exercise,14281,36.108
+diabetic_status,No,31615,79.935
+diabetic_status,Yes,7936,20.065
+genhlth,Good,12899,32.614
+genhlth,Fair,10872,27.489
+genhlth,Very good,7924,20.035
+genhlth,Poor,5929,14.991
+genhlth,Excellent,1927,4.872
+smokeday,Not at all,25081,63.414
+smokeday,Every day,10408,26.315
+smokeday,Some days,4062,10.27
+bmi,Obese,15835,40.037
+bmi,Overweight,12575,31.794
+bmi,Normal weight,10298,26.037
+bmi,Underweight,843,2.131
+obesity_status,Not Obese,23716,59.963
+obesity_status,Obese,15835,40.037
