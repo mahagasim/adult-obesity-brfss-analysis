@@ -1,12 +1,12 @@
 # Factors Influencing Adult Obesity in the United States
 
-An applied health-data science analysis of adult obesity using the **2022 Behavioral Risk Factor Surveillance System (BRFSS)**. The project examines demographic, socioeconomic, behavioral, and health correlates of obesity and compares several regression frameworks for binary and ordered BMI outcomes.
+An applied health-data science analysis of adult obesity using the **2022 Behavioral Risk Factor Surveillance System (BRFSS)**. I examine demographic, socioeconomic, behavioral, and health correlates of obesity and compare several regression frameworks for binary and ordered BMI outcomes.
 
-> **Project context:** This repository is a cleaned, reproducible portfolio version of a 2023/24 Health Data Science course group project (EM1413). The original project was completed by **Maha Gasim, Amal Ahmed, and Arnela Halili**. Repository curation and reproducibility refactoring were completed by Maha Gasim.
+> **Project context:** I completed this project during the 2023/24 **Health Data Science (EM1413)** course as a group project with **Amal Ahmed and Arnela Halili**. I later reorganized the original coursework into this GitHub portfolio version to make the workflow clearer, reproducible, and easier to review.
 
 ## Results at a glance
 
-The final modelling sample contained **39,551 observations across 54 state/territory groups**. The descriptive results show meaningful variation in observed obesity prevalence across age, sex, and geography.
+The final modelling sample contained **39,551 observations across 54 state/territory groups**. The descriptive results show meaningful variation in observed obesity prevalence across age, sex, income, and geography.
 
 ### Descriptive analysis
 
@@ -24,7 +24,7 @@ The five highest observed state-level obesity rates in the analytical sample wer
 
 ### Model analysis
 
-The final generalized linear mixed model estimated obesity using demographic, socioeconomic, behavioral, and health covariates, with a **state-level random intercept**.
+I fitted and compared **eight model objects** across binary logistic, multinomial logistic, ordinal logistic, and mixed-effects frameworks. The final generalized linear mixed model estimated obesity using demographic, socioeconomic, behavioral, and health covariates with a **state-level random intercept**.
 
 ![Selected GLMM odds ratios](results/figures/glmm_selected_odds_ratios.svg)
 
@@ -43,7 +43,7 @@ Selected reported GLMM estimates:
 
 The reported state random-intercept variance was **0.0157** (SD **0.1255**) with an ICC of approximately **0.0155**, indicating modest between-state variation after accounting for the included individual-level covariates.
 
-➡️ **[See the fuller results summary and model interpretation](results/README.md)**
+➡️ **[See the complete results, all models, comparisons, and interpretation](results/README.md)**
 
 ## Research question
 
@@ -51,22 +51,19 @@ Which demographic, socioeconomic, behavioral, and health characteristics are ass
 
 ## Data
 
-The original analysis used the **2022 BRFSS**. A Stata preprocessing step retained 15 variables from the working BRFSS file before the analysis continued in R.
+I used the **2022 BRFSS public-use dataset** released by the U.S. Centers for Disease Control and Prevention (CDC). The original working extract contained **445,132 observations**. After complete-case filtering and removal of selected nonresponse/refusal codes used in the coursework workflow, the modelling dataset contained **39,551 observations**.
 
-The course report started from **445,132 observations** in the reduced BRFSS extract. After complete-case filtering and removal of survey-specific nonresponse codes used in the original workflow, the modelling dataset contained **39,551 observations**.
+I do not commit the large raw or processed BRFSS files to this repository. Instead, I document the public source, exact variables, extraction workflow, data preparation, and reproduction steps in [`data/README.md`](data/README.md).
 
-Raw and processed BRFSS data are intentionally not stored in this repository. See [`data/README.md`](data/README.md) for expected inputs and provenance.
+## Analytical workflow
 
-## Methods
-
-The repository reproduces the analytical scope of the submitted course project:
-
-1. **Data preparation** — variable selection in Stata; complete-case filtering; removal of selected nonresponse/refusal codes; recoding of age, education, income, sex, marital status, employment status, diabetes, heart disease, and state; binary obesity indicator based on the BRFSS BMI category.
-2. **Exploratory analysis** — demographic and health distributions; state-level obesity rates; contingency, joint-probability, and conditional-probability tables.
-3. **Binary logistic regression** — age-only model; multivariable obesity model; sex and income model.
-4. **Multinomial logistic regression** — four-category BMI outcome.
-5. **Ordinal logistic regression** — nested model comparison using AIC and BIC.
-6. **Generalized linear mixed model (GLMM)** — logistic mixed model with a state-level random intercept.
+1. **Data preparation** — I selected variables in Stata, applied complete-case filtering, removed selected nonresponse/refusal codes, and recoded age, education, income, sex, marital status, employment status, diabetes, heart disease, BMI, and state.
+2. **Exploratory analysis** — I examined demographic and health distributions, BMI composition, state-level obesity rates, and joint/conditional probability tables.
+3. **Binary logistic regression** — I estimated an age-only model, a broader multivariable model, and a focused sex + income model.
+4. **Multinomial logistic regression** — I modelled the four-category BMI outcome with obesity as the reference category.
+5. **Ordinal logistic regression** — I compared three nested ordered-BMI specifications using AIC and BIC.
+6. **Generalized linear mixed model (GLMM)** — I fitted a logistic mixed-effects model with a random intercept for state.
+7. **Model comparison and diagnostics** — I compared fit statistics and preserved quality-control notes where the original rendered coursework contained inconsistencies.
 
 ## Repository structure
 
@@ -93,6 +90,7 @@ adult-obesity-brfss-analysis/
 │   └── source_inventory.md
 └── results/
     ├── README.md
+    ├── tables/
     └── figures/
         ├── obesity_by_age.svg
         ├── obesity_by_sex.svg
@@ -116,13 +114,13 @@ Then run:
 source("run_analysis.R")
 ```
 
-### Option B — rebuild from the reduced BRFSS extract
+### Option B — rebuild from the public BRFSS source
 
-Place `Demo+Health data.dta` or `Demo+Health data.xlsx` in `data/raw/`. The Stata extraction script documents how the reduced file was created from the BRFSS working data, and the R preparation script applies the recoding/filtering used in the final report.
+Download the 2022 BRFSS public-use XPT file from the CDC source documented in [`data/README.md`](data/README.md). The Stata extraction script documents the original variable selection, and the R preparation script applies the cleaning and recoding used in the analysis.
 
 ## Methodological note
 
-This repository preserves the modelling scope of the submitted project. The original code did **not** implement BRFSS survey-weighted estimation. The refactor therefore does not present the models as population-representative survey estimates; it focuses on transparent reproduction of the original applied modelling workflow. Reported descriptive percentages and model coefficients above are therefore results from the project's filtered analytical sample, not survey-weighted U.S. population estimates.
+The original coursework did **not** implement BRFSS survey-weighted estimation. I therefore do not present these results as survey-weighted U.S. population estimates or causal effects. The descriptive percentages and model coefficients are results from the filtered analytical sample and are presented to demonstrate the analytical workflow, statistical modelling, interpretation, and reproducibility.
 
 ## Skills demonstrated
 
@@ -131,13 +129,16 @@ This repository preserves the modelling scope of the submitted project. The orig
 - health survey data preparation
 - data cleaning and recoding
 - exploratory data analysis and visualization
+- probability analysis
 - binary logistic regression
 - multinomial logistic regression
 - ordinal logistic regression
 - mixed-effects logistic regression (`glmmTMB`)
-- model comparison with AIC/BIC
+- model comparison with AIC/BIC and likelihood-ratio testing
+- model diagnostics and quality control
 - reproducible project organization
+- public health data provenance and responsible data handling
 
 ## Attribution
 
-See [`AUTHORS.md`](AUTHORS.md). The repository deliberately preserves the group-project attribution rather than presenting the original coursework as sole-authored work.
+I completed the original analysis as a **group project with Amal Ahmed and Arnela Halili**. See [`AUTHORS.md`](AUTHORS.md) for attribution. I do not present the original group coursework as sole-authored work.
