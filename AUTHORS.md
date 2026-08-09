@@ -2,14 +2,13 @@
 
 ## Original course project
 
-- **Maha Gasim**
+I completed the original **Health Data Science (EM1413), 2023/24** project with:
+
 - **Amal Ahmed**
 - **Arnela Halili**
 
-Course: **Health Data Science (EM1413), 2023/24**.
+## My repository curation
 
-## Repository curation
+I reorganized the original course files into this reproducible GitHub portfolio version. I replaced machine-specific paths with relative paths, removed generated and duplicate working files, documented data provenance and methodological limitations, audited the descriptive outputs, and structured the code/results so the analytical workflow is easier to review and reproduce.
 
-The GitHub portfolio version restructures the original course files into a reproducible workflow, replaces machine-specific paths with relative paths, removes generated/duplicate working files, and documents data provenance and limitations. This curation is maintained by **Maha Gasim**.
-
-No claim is made that the original group analysis was sole-authored.
+I do **not** present the original group analysis as sole-authored work.
