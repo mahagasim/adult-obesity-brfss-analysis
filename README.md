@@ -14,32 +14,18 @@ The original analysis used the **2022 BRFSS**. A Stata preprocessing step retain
 
 The course report started from **445,132 observations** in the reduced BRFSS extract. After complete-case filtering and removal of survey-specific nonresponse codes used in the original workflow, the modelling dataset contained **39,551 observations**.
 
-Raw BRFSS files are intentionally not stored in this repository. See [`data/README.md`](data/README.md) for the expected inputs and provenance.
+Raw and processed BRFSS data are intentionally not stored in this repository. See [`data/README.md`](data/README.md) for expected inputs and provenance.
 
 ## Methods
 
 The repository reproduces the analytical scope of the submitted course project:
 
-1. **Data preparation**
-   - variable selection in Stata;
-   - complete-case filtering;
-   - removal of selected nonresponse/refusal codes;
-   - recoding of age, education, income, sex, marital status, employment status, diabetes, heart disease, and state;
-   - binary obesity indicator based on the BRFSS BMI category.
-2. **Exploratory analysis**
-   - distributions of demographic and health variables;
-   - state-level obesity rates;
-   - contingency, joint-probability, and conditional-probability tables.
-3. **Binary logistic regression**
-   - age-only model;
-   - multivariable obesity model;
-   - sex and income model.
-4. **Multinomial logistic regression**
-   - four-category BMI outcome.
-5. **Ordinal logistic regression**
-   - nested model comparison using AIC and BIC.
-6. **Generalized linear mixed model (GLMM)**
-   - logistic mixed model with a state-level random intercept.
+1. **Data preparation** — variable selection in Stata; complete-case filtering; removal of selected nonresponse/refusal codes; recoding of age, education, income, sex, marital status, employment status, diabetes, heart disease, and state; binary obesity indicator based on the BRFSS BMI category.
+2. **Exploratory analysis** — demographic and health distributions; state-level obesity rates; contingency, joint-probability, and conditional-probability tables.
+3. **Binary logistic regression** — age-only model; multivariable obesity model; sex and income model.
+4. **Multinomial logistic regression** — four-category BMI outcome.
+5. **Ordinal logistic regression** — nested model comparison using AIC and BIC.
+6. **Generalized linear mixed model (GLMM)** — logistic mixed model with a state-level random intercept.
 
 ## Repository structure
 
@@ -59,11 +45,10 @@ adult-obesity-brfss-analysis/
 ├── analysis/
 │   └── obesity_analysis.Rmd
 ├── data/
-│   ├── README.md
-│   └── sample/
-│       └── filtered_data_sample.csv
+│   └── README.md
 ├── docs/
 │   ├── methodology.md
+│   ├── refactor_notes.md
 │   └── source_inventory.md
 └── results/
     └── README.md
@@ -88,8 +73,6 @@ source("run_analysis.R")
 ### Option B — rebuild from the reduced BRFSS extract
 
 Place `Demo+Health data.dta` or `Demo+Health data.xlsx` in `data/raw/`. The Stata extraction script documents how the reduced file was created from the BRFSS working data, and the R preparation script applies the recoding/filtering used in the final report.
-
-The small file under `data/sample/` is for code inspection and smoke testing only; it is **not intended for statistical inference**.
 
 ## Selected findings from the submitted report
 
