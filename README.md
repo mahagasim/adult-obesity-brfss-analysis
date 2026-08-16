@@ -6,17 +6,44 @@ An applied health-data science analysis of adult obesity using the **2022 Behavi
 
 ## Results at a glance
 
-The final modelling sample contained **39,551 observations across 54 state/territory groups**. The descriptive results show meaningful variation in observed obesity prevalence across age, sex, income, and geography.
+The final modelling sample contained **39,551 observations across 54 state/territory groups**. The descriptive results show substantial variation in observed obesity prevalence across age, sex, income, physical activity, self-rated health, and geography.
 
-### Descriptive analysis
+> **Important:** all percentages below are **unweighted descriptive estimates from the filtered analytical sample**. They should not be interpreted as survey-weighted U.S. population prevalence estimates or as causal effects.
+
+### Age and BMI composition
 
 ![Observed obesity rate by age group](results/figures/obesity_by_age.svg)
 
 Observed obesity was lowest among adults aged **18–29 (30.1%)**, rose through middle age, peaked among those aged **40–54 (44.9%)**, and declined among adults aged **70+ (33.5%)** in the filtered analytical sample.
 
+![BMI category composition by age group](results/figures/bmi_composition_by_age.svg)
+
+The age pattern is broader than the binary obese/not-obese comparison. The normal-weight share falls from **39.2% among adults aged 18–29** to **22.7% among adults aged 40–54**, while obesity reaches its highest observed share in the 40–54 group. Among adults aged 70+, the overweight share rises to **35.6%** while the obesity share falls to **33.5%**.
+
+### Sex
+
 ![Observed obesity rate by sex](results/figures/obesity_by_sex.svg)
 
 Women had a higher observed obesity rate (**42.3%**) than men (**37.4%**) in the filtered sample.
+
+### Socioeconomic and behavioural patterns
+
+<p align="center">
+  <img src="results/figures/obesity_by_income.svg" width="49%" alt="Observed obesity rate by income group">
+  <img src="results/figures/obesity_by_physical_activity.svg" width="49%" alt="Observed obesity rate by physical activity">
+</p>
+
+Observed obesity was **41.8% in the low-income group**, **40.4% in the middle-income group**, and **37.6% in the high-income group**. The contrast by recent physical activity was larger: **48.0%** among respondents reporting no recent physical activity versus **35.5%** among those classified as physically active.
+
+These comparisons are descriptive associations. They do not establish that income or physical activity causally changes obesity risk, because the data are cross-sectional and the groups differ on many other characteristics.
+
+### Self-rated general health
+
+![Observed obesity rate by self-rated general health](results/figures/obesity_by_general_health.svg)
+
+Observed obesity increased from **20.7% among respondents reporting excellent health** to **42.1% among those reporting good health** and **47.2% among those reporting fair health**; the corresponding rate for respondents reporting poor health was **44.7%**. Self-rated health and obesity can influence and reflect overlapping health conditions, so this pattern is interpreted as association rather than direction of effect.
+
+### Geographic variation
 
 ![Highest observed obesity rates by state](results/figures/top_states_obesity.svg)
 
@@ -52,6 +79,8 @@ Which demographic, socioeconomic, behavioral, and health characteristics are ass
 ## Data
 
 I used the **2022 BRFSS public-use dataset** released by the U.S. Centers for Disease Control and Prevention (CDC). The original working extract contained **445,132 observations**. After complete-case filtering and removal of selected nonresponse/refusal codes used in the coursework workflow, the modelling dataset contained **39,551 observations**.
+
+The additional portfolio figures above were regenerated from the recovered final `filtered_data.csv` used in the original 2023/24 group project. They are therefore based on the same analytical sample rather than on simulated or example data.
 
 I do not commit the large raw or processed BRFSS files to this repository. Instead, I document the public source, exact variables, extraction workflow, data preparation, and reproduction steps in [`data/README.md`](data/README.md).
 
@@ -92,7 +121,11 @@ adult-obesity-brfss-analysis/
     ├── README.md
     ├── tables/
     └── figures/
+        ├── bmi_composition_by_age.svg
         ├── obesity_by_age.svg
+        ├── obesity_by_general_health.svg
+        ├── obesity_by_income.svg
+        ├── obesity_by_physical_activity.svg
         ├── obesity_by_sex.svg
         ├── top_states_obesity.svg
         └── glmm_selected_odds_ratios.svg
